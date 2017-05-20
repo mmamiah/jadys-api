@@ -22,9 +22,8 @@
 package com.chadekin.jadys.syntax.from;
 
 import com.chadekin.jadys.JadysSqlQueryBuilder;
-import com.chadekin.jadys.commons.expression.impl.SqlExpressionFactory;
 import com.chadekin.jadys.commons.resourcekeys.JadysExceptionMessageKeys;
-import com.chadekin.jadys.syntax.from.impl.FromClauseBuilderImpl;
+import com.chadekin.jadys.syntax.from.generic.impl.FromClauseBuilderImpl;
 import com.chadekin.jadys.validation.JadysArgumentValidator;
 
 /**

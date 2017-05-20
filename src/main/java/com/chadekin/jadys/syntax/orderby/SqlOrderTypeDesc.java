@@ -23,8 +23,6 @@ package com.chadekin.jadys.syntax.orderby;
 
 import com.chadekin.jadys.JadysSqlQueryBuilder;
 import com.chadekin.jadys.commons.enums.SqlLexical;
-import com.chadekin.jadys.commons.resourcekeys.JadysKeys;
-import com.chadekin.jadys.syntax.orderby.impl.OrderByClauseBuilderImpl;
 
 /**
  * SqlOrderTypeDesc

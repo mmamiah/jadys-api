@@ -24,6 +24,7 @@ package com.chadekin.jadys;
 import java.util.List;
 import java.util.Set;
 import com.chadekin.jadys.commons.JadysBuilder;
+import com.chadekin.jadys.commons.enums.SqlDialect;
 import com.chadekin.jadys.commons.enums.SqlLexical;
 import com.chadekin.jadys.commons.expression.SqlExpressionCleaning;
 import com.chadekin.jadys.commons.expression.SqlExpressionHandler;
@@ -95,5 +96,18 @@ public interface JadysSqlQueryBuilder<T> extends JadysBuilder<String>, SqlExpres
 	 * @return
 	 */
 	public String buildNext();
-	
+
+	/**
+	 * The Sql dialect
+	 * @return
+	 */
+	public SqlDialect getDialect();
+
+	/**
+	 * The Sql Dialect
+	 * @param dialect
+	 */
+	public void setDialect(SqlDialect dialect);
+
+
 }

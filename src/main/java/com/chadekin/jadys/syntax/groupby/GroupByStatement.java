@@ -22,8 +22,7 @@
 package com.chadekin.jadys.syntax.groupby;
 
 import com.chadekin.jadys.JadysSqlQueryBuilder;
-import com.chadekin.jadys.sqldialect.DefaultPostGroupByTerm;
-import com.chadekin.jadys.syntax.groupby.impl.GroupByBuilderImpl;
+import com.chadekin.jadys.syntax.groupby.generic.impl.GroupByBuilderImpl;
 
 /**
  * GroupByStatement

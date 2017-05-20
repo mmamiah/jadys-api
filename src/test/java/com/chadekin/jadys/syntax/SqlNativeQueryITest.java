@@ -32,11 +32,11 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import com.chadekin.jadys.JadysSqlQueryBuilder;
-import com.chadekin.jadys.syntax.from.FromClauseBuilder;
-import com.chadekin.jadys.syntax.orderby.impl.OrderByClauseBuilderImpl;
-import com.chadekin.jadys.syntax.select.impl.DynamicSqlFactory;
-import com.chadekin.jadys.syntax.select.impl.SelectDefaultBuilder;
-import com.chadekin.jadys.syntax.where.WhereClauseExtendedBuilder;
+import com.chadekin.jadys.syntax.from.generic.FromClauseBuilder;
+import com.chadekin.jadys.syntax.orderby.generic.impl.OrderByClauseBuilderImpl;
+import com.chadekin.jadys.syntax.factory.DynamicSqlFactory;
+import com.chadekin.jadys.syntax.select.generic.impl.SelectDefaultBuilder;
+import com.chadekin.jadys.syntax.where.generic.WhereClauseExtendedBuilder;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 

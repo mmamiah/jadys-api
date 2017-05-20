@@ -3,7 +3,7 @@ package com.chadekin.jadys.sqldialect;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import com.chadekin.jadys.syntax.select.impl.DynamicSqlFactory;
+import com.chadekin.jadys.syntax.factory.DynamicSqlFactory;
 import org.junit.Test;
 
 /**
@@ -48,7 +48,8 @@ public class MySqlDialectTest {
 				.where("user.one").equal("this")
 				.groupBy("user.name")
 				.having("user.age").lessThan(25)
-//				.orderBy("user.size").desc()
+				.orderBy("user.size").desc()
+				.limit(10)
 				.build();
 		
 		// Assert

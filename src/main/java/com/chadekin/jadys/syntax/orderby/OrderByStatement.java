@@ -23,7 +23,10 @@ package com.chadekin.jadys.syntax.orderby;
 
 import com.chadekin.jadys.JadysSqlQueryBuilder;
 import com.chadekin.jadys.commons.JadysBuilder;
-import com.chadekin.jadys.syntax.orderby.impl.OrderByClauseBuilderImpl;
+import com.chadekin.jadys.commons.enums.SqlDialect;
+import com.chadekin.jadys.syntax.orderby.generic.OrderByClauseBuilder;
+import com.chadekin.jadys.syntax.orderby.generic.impl.OrderByClauseBuilderImpl;
+import com.chadekin.jadys.syntax.orderby.mysql.impl.OrderByClauseMySqlBuilderImpl;
 import com.chadekin.jadys.validation.JadysArgumentValidator;
 
 /**
@@ -42,7 +45,12 @@ public interface OrderByStatement<O> extends JadysBuilder<String>  {
 		}
 		else if(this instanceof JadysSqlQueryBuilder){
 			JadysSqlQueryBuilder actualBuilder = ((JadysSqlQueryBuilder)this);
-			builder = OrderByClauseBuilderImpl.newStatement(actualBuilder);
+			if(actualBuilder.getDialect()== SqlDialect.MYSQL){
+				builder = OrderByClauseMySqlBuilderImpl.newStatement(actualBuilder);
+			}
+			else{
+				builder = OrderByClauseBuilderImpl.newStatement(actualBuilder);
+			}
 			actualBuilder.setChild(builder);
 		}
 		if(builder!=null){

@@ -29,8 +29,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.text.IsEmptyString.emptyString;
 
 import com.chadekin.jadys.JadysSqlQueryBuilder;
-import com.chadekin.jadys.syntax.select.SelectClauseBuilder;
-import com.chadekin.jadys.syntax.select.impl.DynamicSqlFactory;
+import com.chadekin.jadys.syntax.select.generic.SelectClauseBuilder;
+import com.chadekin.jadys.syntax.factory.DynamicSqlFactory;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

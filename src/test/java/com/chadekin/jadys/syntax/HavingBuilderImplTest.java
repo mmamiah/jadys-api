@@ -28,11 +28,11 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 
 import com.chadekin.jadys.commons.enums.SqlLexical;
-import com.chadekin.jadys.sqldialect.DefaultPostHavingTerm;
-import com.chadekin.jadys.sqldialect.DefaultPostOrderByTerm;
-import com.chadekin.jadys.syntax.groupby.GroupByBuilder;
-import com.chadekin.jadys.syntax.groupby.impl.GroupByBuilderImpl;
-import com.chadekin.jadys.syntax.having.HavingBuilder;
+import com.chadekin.jadys.syntax.having.generic.DefaultPostHavingTerm;
+import com.chadekin.jadys.syntax.orderby.generic.DefaultPostOrderByTerm;
+import com.chadekin.jadys.syntax.groupby.generic.GroupByBuilder;
+import com.chadekin.jadys.syntax.groupby.generic.impl.GroupByBuilderImpl;
+import com.chadekin.jadys.syntax.having.generic.HavingBuilder;
 import org.apache.commons.lang.StringUtils;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;

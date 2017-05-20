@@ -26,6 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import com.chadekin.jadys.JadysSqlQueryBuilder;
+import com.chadekin.jadys.commons.enums.SqlDialect;
 import com.chadekin.jadys.commons.expression.SqlExpressionCleaning;
 import com.chadekin.jadys.commons.expression.impl.SqlExpressionFactory;
 import com.chadekin.jadys.commons.resourcekeys.JadysKeys;
@@ -45,12 +46,14 @@ public abstract class AbstractSqlQueryBuilder<T> implements JadysSqlQueryBuilder
 	private boolean activeStatement;
 	private Set<String> alias;
 	private SqlExpressionItem expressionItem;
+	private SqlDialect dialect;
 	
 	protected AbstractSqlQueryBuilder(JadysSqlQueryBuilder parent){
 		this.parent = parent;
 		this.activeStatement = true;
 		this.alias = Sets.newHashSet();
 		this.resultSql = new StringBuilder();
+		this.dialect = dialect;
 	}
 	
 	@Override
@@ -176,6 +179,16 @@ public abstract class AbstractSqlQueryBuilder<T> implements JadysSqlQueryBuilder
 			result.append(getChild().buildNext());
 		}
 		return result.toString().trim();
+	}
+
+	@Override
+	public SqlDialect getDialect() {
+		return (dialect == null && getParent()!=null) ? getParent().getDialect() : dialect;
+	}
+
+	@Override
+	public void setDialect(SqlDialect dialect) {
+		this.dialect = dialect;
 	}
 
 	private static JadysSqlQueryBuilder getFirstElement(JadysSqlQueryBuilder node){

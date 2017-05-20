@@ -29,15 +29,10 @@ import java.time.Month;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 import com.chadekin.jadys.JadysSqlQueryBuilder;
-import com.chadekin.jadys.commons.AbstractSqlQueryBuilder;
-import com.chadekin.jadys.syntax.select.impl.DynamicSqlFactory;
+import com.chadekin.jadys.syntax.factory.DynamicSqlFactory;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringUtils;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**

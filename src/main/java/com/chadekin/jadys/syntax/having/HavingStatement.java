@@ -23,12 +23,9 @@ package com.chadekin.jadys.syntax.having;
 
 import com.chadekin.jadys.JadysSqlQueryBuilder;
 import com.chadekin.jadys.commons.expression.SqlExpressionHandler;
-import com.chadekin.jadys.operators.JunctionOperator;
 import com.chadekin.jadys.operators.ParameterOperator;
-import com.chadekin.jadys.sqldialect.DefaultPostHavingTerm;
 import com.chadekin.jadys.sqlfunction.SqlFunctionProxy;
-import com.chadekin.jadys.syntax.having.impl.HavingBuilderImpl;
-import com.chadekin.jadys.syntax.orderby.OrderByStatement;
+import com.chadekin.jadys.syntax.having.generic.impl.HavingBuilderImpl;
 
 /**
  * HavingStatement

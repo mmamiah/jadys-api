@@ -26,11 +26,10 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.emptyString;
 
-import com.chadekin.jadys.sqldialect.DefaultPostOrderByTerm;
-import com.chadekin.jadys.syntax.orderby.impl.OrderByClauseBuilderImpl;
+import com.chadekin.jadys.syntax.orderby.generic.DefaultPostOrderByTerm;
+import com.chadekin.jadys.syntax.orderby.generic.impl.OrderByClauseBuilderImpl;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**

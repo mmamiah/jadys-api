@@ -1,7 +1,7 @@
 package com.chadekin.jadys.syntax.having;
 
 import com.chadekin.jadys.operators.ParameterOperator;
-import com.chadekin.jadys.sqldialect.DefaultPostHavingTerm;
+import com.chadekin.jadys.syntax.having.generic.DefaultPostHavingTerm;
 import com.chadekin.jadys.sqlfunction.SqlFunctionProxy;
 
 /**

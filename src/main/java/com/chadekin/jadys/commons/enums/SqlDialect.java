@@ -21,11 +21,14 @@
  */
 package com.chadekin.jadys.commons.enums;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * RdbmsType
  */
 public enum SqlDialect implements BusinessEnum {
 
+	NONE("NONE", StringUtils.EMPTY),
 	MYSQL("MYSQL", "MySQL"),
 	MS_ACCESS("MS_ACCESS", "MS Access"),
 	SQL_SERVER("SQL_SERVER", "SQL Server"),

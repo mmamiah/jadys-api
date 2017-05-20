@@ -6,7 +6,7 @@ import com.chadekin.jadys.commons.enums.SqlLexical;
 import com.chadekin.jadys.commons.expression.SqlExpressionHandler;
 import com.chadekin.jadys.commons.resourcekeys.JadysExceptionMessageKeys;
 import com.chadekin.jadys.commons.resourcekeys.JadysKeys;
-import com.chadekin.jadys.syntax.select.SelectClauseBuilder;
+import com.chadekin.jadys.syntax.select.generic.SelectClauseBuilder;
 import com.chadekin.jadys.validation.JadysArgumentValidator;
 
 /**

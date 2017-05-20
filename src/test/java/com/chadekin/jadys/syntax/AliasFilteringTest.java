@@ -4,7 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import com.chadekin.jadys.commons.resourcekeys.JadysExceptionMessageKeys;
-import com.chadekin.jadys.syntax.select.impl.DynamicSqlFactory;
+import com.chadekin.jadys.syntax.factory.DynamicSqlFactory;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

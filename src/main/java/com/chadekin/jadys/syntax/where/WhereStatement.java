@@ -24,7 +24,7 @@ package com.chadekin.jadys.syntax.where;
 import com.chadekin.jadys.JadysSqlQueryBuilder;
 import com.chadekin.jadys.commons.expression.SqlExpressionHandler;
 import com.chadekin.jadys.operators.ParameterOperator;
-import com.chadekin.jadys.syntax.where.impl.WhereClauseExtendedBuilderImpl;
+import com.chadekin.jadys.syntax.where.generic.impl.WhereClauseExtendedBuilderImpl;
 import com.chadekin.jadys.validation.JadysArgumentValidator;
 
 /**

@@ -27,7 +27,7 @@ import com.chadekin.jadys.commons.ApplySqlExpression;
 import com.chadekin.jadys.commons.enums.SqlLexical;
 import com.chadekin.jadys.commons.resourcekeys.JadysExceptionMessageKeys;
 import com.chadekin.jadys.commons.resourcekeys.JadysKeys;
-import com.chadekin.jadys.syntax.from.FromClauseBuilder;
+import com.chadekin.jadys.syntax.from.generic.FromClauseBuilder;
 import com.chadekin.jadys.validation.JadysArgumentValidator;
 
 /**

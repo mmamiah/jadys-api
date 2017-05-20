@@ -8,8 +8,9 @@ import com.chadekin.jadys.commons.AbstractSqlQueryBuilder;
 import com.chadekin.jadys.commons.enums.SqlLexical;
 import com.chadekin.jadys.commons.resourcekeys.JadysExceptionMessageKeys;
 import com.chadekin.jadys.commons.resourcekeys.JadysKeys;
-import com.chadekin.jadys.syntax.from.FromClauseBuilder;
-import com.chadekin.jadys.syntax.select.impl.DynamicSqlFactory;
+import com.chadekin.jadys.syntax.from.generic.FromClauseBuilder;
+import com.chadekin.jadys.syntax.select.generic.SelectClauseBuilder;
+import com.chadekin.jadys.syntax.factory.DynamicSqlFactory;
 import com.chadekin.jadys.syntax.select.operation.SelectStatementOperation;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -20,7 +21,7 @@ import org.apache.log4j.Logger;
  * @param <F> The FromClause as per Sql dialect
  * @param <FX> FX extends FromClauseExtendedBuilder<FX, W, O>
  */
-public abstract class AbstractSelectBuilder<T, F, FX> extends AbstractSqlQueryBuilder<T> implements SelectClauseBuilder<F, FX>  {
+public abstract class AbstractSelectBuilder<T, F, FX> extends AbstractSqlQueryBuilder<T> implements SelectClauseBuilder<F, FX> {
 
 	private static Logger LOGGER = Logger.getLogger(DynamicSqlFactory.class);
 	private StringBuilder sqlQuery;
