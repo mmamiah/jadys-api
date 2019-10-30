@@ -1,4 +1,4 @@
-package com.gogolo.jadys.sql.from;
+package com.gogolo.jadys.sql.clause.from;
 
 public interface FromExpression {
 

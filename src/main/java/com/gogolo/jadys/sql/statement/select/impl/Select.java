@@ -1,7 +1,7 @@
-package com.gogolo.jadys.sql.select.impl;
+package com.gogolo.jadys.sql.statement.select.impl;
 
-import com.gogolo.jadys.sql.from.impl.From;
-import com.gogolo.jadys.sql.select.SelectExpression;
+import com.gogolo.jadys.sql.clause.from.impl.From;
+import com.gogolo.jadys.sql.statement.select.SelectArgument;
 import com.gogolo.jadys.sql.SqlStatement;
 import com.sun.deploy.util.ArrayUtil;
 import org.springframework.util.StringUtils;
@@ -30,20 +30,20 @@ public class Select extends SqlStatement {
         return From.newStatement(new Select(String.format(SELECT_STATEMENT, arrayToArguments(column))));
     }
 
-    public static From select(SelectExpression field) {
+    public static From select(SelectArgument field) {
         String arg = (field==null) ? START : arrayToArguments(field);
         return From.newStatement(new Select(String.format(SELECT_STATEMENT, arg)));
     }
 
-    public static From select(SelectExpression field1, SelectExpression field2) {
+    public static From select(SelectArgument field1, SelectArgument field2) {
         return From.newStatement(new Select(String.format(SELECT_STATEMENT, arrayToArguments(field1, field2))));
     }
 
-    public static From select(SelectExpression field1, SelectExpression field2, SelectExpression field3) {
+    public static From select(SelectArgument field1, SelectArgument field2, SelectArgument field3) {
         return From.newStatement(new Select(String.format(SELECT_STATEMENT, arrayToArguments(field1, field2, field3))));
     }
 
-    public static From select(SelectExpression field1, SelectExpression field2, SelectExpression field3, SelectExpression field4) {
+    public static From select(SelectArgument field1, SelectArgument field2, SelectArgument field3, SelectArgument field4) {
         return From.newStatement(new Select(String.format(SELECT_STATEMENT, arrayToArguments(field1, field2, field3, field4))));
     }
 
@@ -52,7 +52,7 @@ public class Select extends SqlStatement {
         return StringUtils.isEmpty(tempArg) ? START : String.join(DELIMITER, args);
     }
 
-    private static String arrayToArguments(SelectExpression... args){
+    private static String arrayToArguments(SelectArgument... args){
         if(args == null){
             return START;
         }

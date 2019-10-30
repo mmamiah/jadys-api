@@ -1,11 +1,12 @@
-package com.gogolo.jadys.sql.from.impl;
+package com.gogolo.jadys.sql.clause.from.impl;
 
 import com.gogolo.jadys.sql.SqlStatement;
-import com.gogolo.jadys.sql.select.impl.Select;
+import com.gogolo.jadys.sql.statement.select.impl.Select;
 
 public class From extends SqlStatement {
 
     private static final String FROM_STATEMENT = "%s FROM %S";
+    private static final String DUAL = "DUAL";
 
     private Select select;
     private String tableName;
@@ -26,6 +27,11 @@ public class From extends SqlStatement {
     public As from(String tableName) {
         this.tableName = tableName;
         return new As(toString());
+    }
+
+    public SqlStatement fromDual() {
+        this.tableName = DUAL;
+        return this;
     }
 
 }

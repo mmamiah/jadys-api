@@ -1,8 +1,7 @@
-package com.gogolo.jadys.sql.from.impl;
+package com.gogolo.jadys.sql.clause.from.impl;
 
 import com.gogolo.jadys.sql.SqlStatement;
-import com.gogolo.jadys.sql.from.FromExpression;
-import com.gogolo.jadys.sql.where.WhereStatement;
+import com.gogolo.jadys.sql.clause.where.WhereStatement;
 import org.apache.commons.lang3.StringUtils;
 
 public class As extends SqlStatement {

@@ -1,19 +1,18 @@
-package com.gogolo.jadys;
+package com.gogolo.jadys.sql.statement.select;
 
 import com.gogolo.jadys.sql.SqlStatement;
-import com.gogolo.jadys.sql.select.SelectExpression;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.gogolo.jadys.sql.select.impl.Column.column;
-import static com.gogolo.jadys.sql.select.impl.Distinct.distinct;
-import static com.gogolo.jadys.sql.select.impl.Select.select;
+import static com.gogolo.jadys.sql.statement.select.impl.Column.column;
+import static com.gogolo.jadys.sql.statement.select.impl.Distinct.distinct;
+import static com.gogolo.jadys.sql.statement.select.impl.Select.select;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-class SelectFromStatementTest {
+class SelectStatementTest {
 
     @Test
     void shouldSelectFromTableStatement(){
@@ -45,7 +44,7 @@ class SelectFromStatementTest {
         String tableName = "User";
 
         // Act
-        SqlStatement sql = select((SelectExpression) null).from(tableName);
+        SqlStatement sql = select((SelectArgument) null).from(tableName);
 
         // Assert
         assertThat(sql.toString(), equalTo("SELECT * FROM USER"));
@@ -174,6 +173,19 @@ class SelectFromStatementTest {
 
         // Assert
         assertThat(sql.toString(), equalTo("SELECT DISTINCT name as nm, date_of_birth as dob FROM USER"));
+    }
+
+    @Test
+    void shouldSelectFromDual() {
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select(column("name"))
+                            .fromDual();
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT name FROM DUAL"));
     }
 
 }

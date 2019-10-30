@@ -1,8 +1,8 @@
-package com.gogolo.jadys.sql.select.impl;
+package com.gogolo.jadys.sql.statement.select.impl;
 
-import com.gogolo.jadys.sql.select.SelectExpression;
+import com.gogolo.jadys.sql.statement.select.SelectArgument;
 
-public class Distinct implements SelectExpression {
+public class Distinct implements SelectArgument {
 
     private static final String DISTINCT_STATEMENT = "DISTINCT %s";
 

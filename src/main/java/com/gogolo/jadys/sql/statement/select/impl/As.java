@@ -1,9 +1,9 @@
-package com.gogolo.jadys.sql.select.impl;
+package com.gogolo.jadys.sql.statement.select.impl;
 
-import com.gogolo.jadys.sql.select.SelectExpression;
+import com.gogolo.jadys.sql.statement.select.SelectArgument;
 import org.apache.commons.lang3.StringUtils;
 
-public class As implements SelectExpression {
+public class As implements SelectArgument {
 
     private String alias;
 
@@ -15,7 +15,7 @@ public class As implements SelectExpression {
         return new As(alias);
     }
 
-    public SelectExpression as(String alias){
+    public SelectArgument as(String alias){
         String temp = StringUtils.isBlank(alias) ? StringUtils.EMPTY : " as " + alias.trim();
         this.alias = this.alias.trim() + temp;
         return this;

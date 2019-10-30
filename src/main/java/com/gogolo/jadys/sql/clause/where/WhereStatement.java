@@ -1,7 +1,6 @@
-package com.gogolo.jadys.sql.where;
+package com.gogolo.jadys.sql.clause.where;
 
 import com.gogolo.jadys.sql.SqlStatement;
-import jdk.nashorn.internal.objects.annotations.Where;
 
 public class WhereStatement extends SqlStatement {
 
@@ -18,7 +17,6 @@ public class WhereStatement extends SqlStatement {
     public SqlStatement where(String expression){
         return this;
     }
-
 
     @Override
     public String toString() {

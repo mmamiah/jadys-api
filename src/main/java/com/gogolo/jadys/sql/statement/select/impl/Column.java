@@ -1,8 +1,8 @@
-package com.gogolo.jadys.sql.select.impl;
+package com.gogolo.jadys.sql.statement.select.impl;
 
-import com.gogolo.jadys.sql.select.SelectExpression;
+import com.gogolo.jadys.sql.statement.select.SelectArgument;
 
-public class Column implements SelectExpression {
+public class Column implements SelectArgument {
 
     private String column;
 
