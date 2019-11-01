@@ -2,17 +2,16 @@ package com.gogolo.jadys.sql.functions.enums;
 
 import com.gogolo.jadys.sql.functions.SqlFunction;
 
-public enum MiscellaneousFunction implements SqlFunction {
+public enum AdvancedFunction implements SqlFunction {
 
-    GREATEST("GREATEST", "GREATEST(%s)"),
-    LEAST("LEAST", "LEAST(%s)"),
     UID("UID", "UID"),
-    USER("USER", "USER");
+    USER("USER", "USER"),
+    NVL("NVL", "NVL(%s, %s)");
 
     private String code;
     private  String format;
 
-    MiscellaneousFunction(String code, String format) {
+    AdvancedFunction(String code, String format) {
         this.code = code;
         this.format = format;
     }

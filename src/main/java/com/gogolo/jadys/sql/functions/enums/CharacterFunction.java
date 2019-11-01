@@ -3,22 +3,24 @@ package com.gogolo.jadys.sql.functions.enums;
 import com.gogolo.jadys.sql.functions.SqlFunction;
 
 public enum CharacterFunction implements SqlFunction {
-
-    LOWER("LOWER", "LOWER(%s)"),
-    UPPER("UPPER", "UPPER(%s)"),
-    INITCAP("INITCAP", "INITCAP(%s)"),
-    SUBSTR("SUBSTR", "SUBSTR(%s)"),
-    INSTR("INSTR", "INSTR(%s)"),
-    LENGTH("LENGTH", "LENGTH(%s)"),
-    TRANSLATE("TRANSLATE", "TRANSLATE(%s)"),
-    TRIM("TRIM", "TRIM(%s)"),
-    EXTRACT("EXTRACT", "EXTRACT(%s FROM %s)"),
+    ASCII("ASCII", "ASCII(%s)"),
+    CHR("CHR", "CHR(%s)"),
     CONCAT("CONCAT", "CONCAT(%s, %s)"),
-    NVL("NVL", "NVL(%s, %s)"),
-    REPLACE("REPLACE", "REPLACE(%s, %s)");
+    CONCAT_X("CONCAT_X", "%s"),
+    INITCAP("INITCAP", "INITCAP(%s)"),
+    INSTR("INSTR", "INSTR(%s, %s)"),
+    INSTR_X("INSTR_X", "INSTR(%s, %s, %d, %d)"),
+    LENGTH("LENGTH", "LENGTH(%s)"),
+    LOWER("LOWER", "LOWER(%s)"),
+    REPLACE("REPLACE", "REPLACE(%s, %s)"),
+    SUBSTR("SUBSTR", "SUBSTR(%s, %d)"),
+    SUBSTR_X("SUBSTR_X", "SUBSTR(%s, %d, %d)"),
+    TRANSLATE("TRANSLATE", "TRANSLATE(%s, %s, %s)"),
+    TRIM("TRIM", "TRIM(%s)"),
+    UPPER("UPPER", "UPPER(%s)");
 
     private String code;
-    private  String format;
+    private String format;
 
     CharacterFunction(String code, String format) {
         this.code = code;

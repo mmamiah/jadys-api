@@ -7,7 +7,15 @@ public enum MathFunction implements SqlFunction {
     ABS("ABS", "ABS(%s)"),
     CEIL("CEIL", "CEIL(%s)"),
     FLOOR("FLOOR", "FLOOR(%s)"),
-    MOD("MOD", "MOD(%s, %s)");
+    MOD("MOD", "MOD(%s, %s)"),
+    GREATEST("GREATEST", "GREATEST(%s)"),
+    LEAST("LEAST", "LEAST(%s)"),
+    SUM("SUM", "SUM(%s)"),
+    AVG("AVG", "AVG(%s)"),
+    MAX("MAX", "MAX(%s)"),
+    MIN("MIN", "MIN(%s)"),
+    COUNT("COUNT", "COUNT(%s)"),
+    MEDIAN("MEDIAN", "MEDIAN(%s)");
 
     private String code;
     private  String format;

@@ -9,4 +9,5 @@ public interface SqlFunction {
     String getCode();
 
     String getFormat();
+
 }

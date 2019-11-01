@@ -4,10 +4,22 @@ import com.gogolo.jadys.sql.functions.SqlFunction;
 
 public enum DateFunction implements SqlFunction {
 
-    TO_CHAR("TO_CHAR", "TO_CHAR(%s, %s)"), // Select to_char(sysdate,’DAY’)”Today” FROM DUAL;
     ADD_MONTHS("ADD_MONTHS", "ADD_MONTHS(%s, %s)"),
+
+    /**
+     * The Oracle/PLSQL LAST_DAY function returns the last day of the month based on a date value.
+     */
     LAST_DAY("LAST_DAY", "LAST_DAY(%s)"),
-    NEXT_DAY("NEXT_DAY", "NEXT_DAY(%s)");
+
+    /**
+     * The Oracle/PLSQL NEXT_DAY function returns the first weekday that is greater than a date.
+     */
+    NEXT_DAY("NEXT_DAY", "NEXT_DAY(%s)"),
+
+    /**
+     * The Oracle/PLSQL EXTRACT function extracts a value from a date or interval value.
+     */
+    EXTRACT("EXTRACT", "EXTRACT(%s FROM DATE %s)");
 
     private String code;
     private  String format;

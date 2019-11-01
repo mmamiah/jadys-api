@@ -5,7 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.gogolo.jadys.sql.functions.impl.SqlFunctionLibrary.*;
+import static com.gogolo.jadys.sql.functions.impl.SqlAdvancedFunctions.uid;
+import static com.gogolo.jadys.sql.functions.impl.SqlCharFunctions.*;
+import static com.gogolo.jadys.sql.functions.impl.SqlDateFunctions.extract;
+import static com.gogolo.jadys.sql.functions.impl.SqlMathFunctions.sum;
 import static com.gogolo.jadys.sql.statement.select.impl.Select.select;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -43,10 +46,10 @@ class SqlFunctionTest {
         String tableName = "User";
 
         // Act
-        SqlStatement sql = select(extract("alpha", "beta")).from(tableName);
+        SqlStatement sql = select(extract("YEAR", "2003-08-22")).from(tableName);
 
         // Assert
-        assertThat(sql.toString(), equalTo("SELECT EXTRACT(alpha FROM beta) FROM USER"));
+        assertThat(sql.toString(), equalTo("SELECT EXTRACT(YEAR FROM DATE '2003-08-22') FROM USER"));
     }
 
     @Test
@@ -71,6 +74,41 @@ class SqlFunctionTest {
 
         // Assert
         assertThat(sql.toString(), equalTo("SELECT REPLACE(alpha, beta, teta) FROM USER"));
+    }
+
+    @Test
+    void shouldConcatOneArgument(){
+        // Arrange
+
+        // Act
+        SqlStatement sql = select(concat("one")).fromDual();
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT one FROM DUAL"));
+    }
+
+    @Test
+    void shouldConcatTwoArguments(){
+        // Arrange
+
+        // Act
+        SqlStatement sql = select(concat("Tex", "Walter")).fromDual();
+
+        extract(null, null);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT CONCAT(Tex, Walter) FROM DUAL"));
+    }
+
+    @Test
+    void shouldConcatMoreThanTwoArguments(){
+        // Arrange
+
+        // Act
+        SqlStatement sql = select(concat("Tex", "colt", "Walter")).fromDual();
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT Tex || colt || Walter FROM DUAL"));
     }
 
     @Test
