@@ -1,11 +1,12 @@
 package com.gogolo.jadys.sql.functions.impl;
 
 import com.gogolo.jadys.sql.functions.AbstractSqlFunction;
+import com.gogolo.jadys.sql.functions.enums.CharacterFunction;
 import com.gogolo.jadys.sql.statement.select.SelectArgument;
 
 import static com.gogolo.jadys.sql.functions.enums.CharacterFunction.*;
 
-public class SqlCharFunctions extends AbstractSqlFunction<SqlCharFunctions> {
+public class SqlCharFunctions extends AbstractSqlFunction<CharacterFunction> {
 
     public static SelectArgument ascii(String arg) {
         return new SqlCharFunctions().apply(ASCII, arg);

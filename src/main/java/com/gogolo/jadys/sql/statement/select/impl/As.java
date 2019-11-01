@@ -3,7 +3,7 @@ package com.gogolo.jadys.sql.statement.select.impl;
 import com.gogolo.jadys.sql.statement.select.SelectArgument;
 import org.apache.commons.lang3.StringUtils;
 
-public class As implements SelectArgument {
+public class As extends SelectArgument {
 
     private String alias;
 

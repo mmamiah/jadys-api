@@ -1,7 +1,11 @@
 package com.gogolo.jadys.sql.statement.select;
 
-public interface SelectArgument {
+public abstract class SelectArgument {
 
-    String  getValue();
+    public abstract String getValue();
+
+    public String toString(){
+        return getValue();
+    }
 
 }

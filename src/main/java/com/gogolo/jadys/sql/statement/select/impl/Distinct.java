@@ -2,7 +2,7 @@ package com.gogolo.jadys.sql.statement.select.impl;
 
 import com.gogolo.jadys.sql.statement.select.SelectArgument;
 
-public class Distinct implements SelectArgument {
+public class Distinct extends SelectArgument {
 
     private static final String DISTINCT_STATEMENT = "DISTINCT %s";
 

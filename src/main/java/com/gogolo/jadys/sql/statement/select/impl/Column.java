@@ -2,7 +2,7 @@ package com.gogolo.jadys.sql.statement.select.impl;
 
 import com.gogolo.jadys.sql.statement.select.SelectArgument;
 
-public class Column implements SelectArgument {
+public class Column extends SelectArgument {
 
     private String column;
 

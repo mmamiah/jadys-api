@@ -1,23 +1,26 @@
 package com.gogolo.jadys.sql.functions.impl;
 
 import com.gogolo.jadys.sql.functions.AbstractSqlFunction;
+import com.gogolo.jadys.sql.functions.enums.DateFunction;
 import com.gogolo.jadys.sql.statement.select.SelectArgument;
+import org.springframework.util.StringUtils;
 
-import static com.gogolo.jadys.sql.functions.enums.AdvancedFunction.NVL;
 import static com.gogolo.jadys.sql.functions.enums.DateFunction.*;
 
-public class SqlDateFunctions extends AbstractSqlFunction<SqlDateFunctions> {
+public class SqlDateFunctions extends AbstractSqlFunction<DateFunction> {
+
+    private static final String QUOTE = "'";
 
     public static SelectArgument addMonths(String date, int number_months) {
-        return new SqlDateFunctions().apply(ADD_MONTHS, addQuoteToDate(date), String.valueOf(number_months));
+        return new SqlDateFunctions().apply(ADD_MONTHS, addQuote(date), String.valueOf(number_months));
     }
 
     public static SelectArgument lastDay(String date) {
-        return new SqlDateFunctions().apply(LAST_DAY, addQuoteToDate(date));
+        return new SqlDateFunctions().apply(LAST_DAY, addQuote(date));
     }
 
     public static SelectArgument nextDay(String date) {
-        return new SqlDateFunctions().apply(NEXT_DAY, addQuoteToDate(date));
+        return new SqlDateFunctions().apply(NEXT_DAY, addQuote(date));
     }
 
     /**
@@ -28,11 +31,18 @@ public class SqlDateFunctions extends AbstractSqlFunction<SqlDateFunctions> {
      * @return The SqlArgument object.
      */
     public static SelectArgument extract(String calendarItem, String date) {
-        return new SqlDateFunctions().apply(EXTRACT, calendarItem, addQuoteToDate(date));
+        return new SqlDateFunctions().apply(EXTRACT, calendarItem, addQuote(date));
     }
 
-    private static String addQuoteToDate(String date){
-        return "'" + date + "'";
+    public static String addQuote(String date){
+        String str = date.trim();
+        if(!StringUtils.startsWithIgnoreCase(str, QUOTE)){
+            str = QUOTE + str;
+        }
+        if(!StringUtils.endsWithIgnoreCase(str, QUOTE)){
+            str = str + QUOTE;
+        }
+        return str;
     }
 
 }

@@ -2,15 +2,18 @@ package com.gogolo.jadys.sql.functions.enums;
 
 import com.gogolo.jadys.sql.functions.SqlFunction;
 
-public enum ConversionFunction implements SqlFunction {
+public enum AggregateFunction implements SqlFunction {
 
-    TO_CHAR("TO_CHAR", "to_char(%s, %s)"),
-    TO_DATE("TO_DATE", "to_date(%s, %s)"); // Select to_char(sysdate,’DAY’)”Today” FROM DUAL;
+    SUM("SUM", "SUM(%s)"),
+    AVG("AVG", "AVG(%s)"),
+    MAX("MAX", "MAX(%s)"),
+    MIN("MIN", "MIN(%s)"),
+    COUNT("COUNT", "COUNT(%s)");
 
     private String code;
     private  String format;
 
-    ConversionFunction(String code, String format) {
+    AggregateFunction(String code, String format) {
         this.code = code;
         this.format = format;
     }
@@ -25,4 +28,8 @@ public enum ConversionFunction implements SqlFunction {
         return format;
     }
 
+    public AggregateFunction distinct(){
+        this.format = format("DISTINCT %s");
+        return this;
+    }
 }

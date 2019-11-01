@@ -1,28 +1,29 @@
 package com.gogolo.jadys.sql.functions;
 
 import com.gogolo.jadys.sql.statement.select.SelectArgument;
+import org.apache.commons.lang3.ArrayUtils;
 
-public abstract class AbstractSqlFunction<T extends SelectArgument> implements SelectArgument {
+public abstract class AbstractSqlFunction<T extends SqlFunction> extends SelectArgument {
 
     private String expression;
 
-    protected AbstractSqlFunction<T> apply(SqlFunction sqlFunction){
+    protected SelectArgument apply(T sqlFunction){
         this.expression = sqlFunction.getCode();
         return this;
     }
 
-    protected AbstractSqlFunction<T> apply(SqlFunction sqlFunction, String arg){
-        this.expression = sqlFunction.format(arg);
+    protected SelectArgument apply(T sqlFunction, Object arg){
+        this.expression = sqlFunction.format(String.valueOf(arg));
         return this;
     }
 
-    protected AbstractSqlFunction<T> apply(SqlFunction sqlFunction, String arg1, String arg2){
-        this.expression = sqlFunction.format(arg1, arg2);
+    protected SelectArgument apply(T sqlFunction, Object arg1, Object arg2){
+        this.expression = sqlFunction.format(String.valueOf(arg1), String.valueOf(arg2));
         return this;
     }
 
-    protected AbstractSqlFunction<T> apply(SqlFunction sqlFunction, String... args){
-        this.expression = sqlFunction.format(args);
+    protected SelectArgument apply(T sqlFunction, Object... args){
+        this.expression = sqlFunction.format(ArrayUtils.toStringArray(args));
         return this;
     }
 

@@ -1,11 +1,12 @@
 package com.gogolo.jadys.sql.functions.impl;
 
 import com.gogolo.jadys.sql.functions.AbstractSqlFunction;
+import com.gogolo.jadys.sql.functions.enums.AdvancedFunction;
 import com.gogolo.jadys.sql.statement.select.SelectArgument;
 
 import static com.gogolo.jadys.sql.functions.enums.AdvancedFunction.*;
 
-public class SqlAdvancedFunctions extends AbstractSqlFunction<SqlAdvancedFunctions> {
+public class SqlAdvancedFunctions extends AbstractSqlFunction<AdvancedFunction> {
 
     public static SelectArgument uid() {
         return new SqlAdvancedFunctions().apply(UID);
