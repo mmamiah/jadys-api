@@ -1,9 +1,12 @@
 package com.gogolo.jadys.sql.functions.impl;
 
+import com.gogolo.jadys.sql.SqlStatement;
 import com.gogolo.jadys.sql.functions.AbstractSqlFunction;
 import com.gogolo.jadys.sql.functions.enums.DateFunction;
-import com.gogolo.jadys.sql.statement.select.SelectArgument;
+import com.gogolo.jadys.sql.functions.enums.SqlDateField;
 import org.springframework.util.StringUtils;
+
+import java.util.Arrays;
 
 import static com.gogolo.jadys.sql.functions.enums.DateFunction.*;
 
@@ -11,31 +14,33 @@ public class SqlDateFunctions extends AbstractSqlFunction<DateFunction> {
 
     private static final String QUOTE = "'";
 
-    public static SelectArgument addMonths(String date, int number_months) {
-        return new SqlDateFunctions().apply(ADD_MONTHS, addQuote(date), String.valueOf(number_months));
+    public static SqlStatement addMonths(String dateField, int numberOfMonths) {
+        return new SqlDateFunctions().apply(ADD_MONTHS, dateField, String.valueOf(numberOfMonths));
     }
 
-    public static SelectArgument lastDay(String date) {
-        return new SqlDateFunctions().apply(LAST_DAY, addQuote(date));
+    public static SqlStatement lastDay(String dateField) {
+        return new SqlDateFunctions().apply(LAST_DAY, dateField);
     }
 
-    public static SelectArgument nextDay(String date) {
-        return new SqlDateFunctions().apply(NEXT_DAY, addQuote(date));
+    public static SqlStatement nextDay(String dateField) {
+        return new SqlDateFunctions().apply(NEXT_DAY, dateField);
     }
 
     /**
-     * @param calendarItem { YEAR | MONTH | DAY | HOUR | MINUTE | SECOND } <br>
-     *                     | { TIMEZONE_HOUR | TIMEZONE_MINUTE } <br>
-     *                     | { TIMEZONE_REGION | TIMEZONE_ABBR } <br>
-     * @param date  { date_value | interval_value }
+     * @param field The SqlDateField
+     * @param dateField  { date_value | interval_value }
      * @return The SqlArgument object.
      */
-    public static SelectArgument extract(String calendarItem, String date) {
-        return new SqlDateFunctions().apply(EXTRACT, calendarItem, addQuote(date));
+    public static SqlStatement extract(SqlDateField field, String dateField) {
+        return new SqlDateFunctions().apply(EXTRACT, field, dateField);
     }
 
-    public static String addQuote(String date){
-        String str = date.trim();
+    public static <T extends CharSequence> String addQuote(T arg){
+        if(!(arg instanceof String)){
+            return String.valueOf(arg);
+        }
+
+        String str = String.valueOf(arg).trim();
         if(!StringUtils.startsWithIgnoreCase(str, QUOTE)){
             str = QUOTE + str;
         }
@@ -43,6 +48,10 @@ public class SqlDateFunctions extends AbstractSqlFunction<DateFunction> {
             str = str + QUOTE;
         }
         return str;
+    }
+
+    public static <T extends CharSequence> String[] addQuote(T... args){
+        return Arrays.stream(args).map(SqlDateFunctions::addQuote).toArray(String[]::new);
     }
 
 }

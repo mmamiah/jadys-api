@@ -1,19 +1,15 @@
 package com.gogolo.jadys.sql.functions;
 
 import com.gogolo.jadys.sql.SqlStatement;
-import com.gogolo.jadys.sql.functions.impl.SqlConvertionFunctions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.gogolo.jadys.sql.functions.impl.SqlAdvancedFunctions.uid;
-import static com.gogolo.jadys.sql.functions.impl.SqlAggregateFunctions.sum;
-import static com.gogolo.jadys.sql.functions.impl.SqlAggregateFunctions.sumDistinct;
-import static com.gogolo.jadys.sql.functions.impl.SqlCharFunctions.*;
-import static com.gogolo.jadys.sql.functions.impl.SqlConvertionFunctions.toChar;
-import static com.gogolo.jadys.sql.functions.impl.SqlConvertionFunctions.toDate;
-import static com.gogolo.jadys.sql.functions.impl.SqlDateFunctions.extract;
-import static com.gogolo.jadys.sql.statement.select.impl.Select.select;
+import static com.gogolo.jadys.sql.functions.impl.SqlConversionFunctions.toChar;
+import static com.gogolo.jadys.sql.functions.impl.SqlConversionFunctions.toDate;
+import static com.gogolo.jadys.sql.statement.Select.select;
+import static com.gogolo.jadys.sql.statement.impl.Column.column;
+import static com.gogolo.jadys.sql.statement.impl.Distinct.distinct;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -21,133 +17,190 @@ import static org.hamcrest.MatcherAssert.assertThat;
 class SqlFunctionTest {
 
     @Test
-    void shouldAggregateColumnWhenSumFunction(){
-        // Arrange
-        String tableName = "User";
-
-        // Act
-        SqlStatement sql = select(sum("salary")).from(tableName);
-
-        // Assert
-        assertThat(sql.toString(), equalTo("SELECT SUM(salary) FROM USER"));
-    }
-
-    @Test
-    void shouldAggregateColumnWhenSumDistinctFunction(){
-        // Arrange
-        String tableName = "User";
-
-        // Act
-        SqlStatement sql = select(sumDistinct("salary")).from(tableName);
-
-        // Assert
-        assertThat(sql.toString(), equalTo("SELECT SUM(DISTINCT salary) FROM USER"));
-    }
-
-    @Test
-    void shouldBuildSelectStatementWithCharacterFunctionWhenSingleArgument(){
-        // Arrange
-        String tableName = "User";
-
-        // Act
-        SqlStatement sql = select(lower("salary")).from(tableName);
-
-        // Assert
-        assertThat(sql.toString(), equalTo("SELECT LOWER(salary) FROM USER"));
-    }
-
-    @Test
-    void shouldBuildSelectStatementWithCharacterFunctionWhenDoubleArgument(){
-        // Arrange
-        String tableName = "User";
-
-        // Act
-        SqlStatement sql = select(extract("YEAR", "2003-08-22")).from(tableName);
-
-        // Assert
-        assertThat(sql.toString(), equalTo("SELECT EXTRACT(YEAR FROM DATE '2003-08-22') FROM USER"));
-    }
-
-    @Test
-    void shouldBuildSelectStatementWithCharacterFunctionWhenTwoArgumentsOverThree(){
-        // Arrange
-        String tableName = "User";
-
-        // Act
-        SqlStatement sql = select(replace("alpha", "beta")).from(tableName);
-
-        // Assert
-        assertThat(sql.toString(), equalTo("SELECT REPLACE(alpha, beta) FROM USER"));
-    }
-
-    @Test
-    void shouldBuildSelectStatementWithCharacterFunctionWhenThreeArgumentsOverThree(){
-        // Arrange
-        String tableName = "User";
-
-        // Act
-        SqlStatement sql = select(replace("alpha", "beta", "tera")).from(tableName);
-
-        // Assert
-        assertThat(sql.toString(), equalTo("SELECT REPLACE(alpha, beta, tera) FROM USER"));
-    }
-
-    @Test
-    void shouldConcatOneArgument(){
-        // Arrange
-
-        // Act
-        SqlStatement sql = select(concat("one")).fromDual();
-
-        // Assert
-        assertThat(sql.toString(), equalTo("SELECT one FROM DUAL"));
-    }
-
-    @Test
-    void shouldConcatTwoArguments(){
-        // Arrange
-
-        // Act
-        SqlStatement sql = select(concat("Tex", "Walter")).fromDual();
-
-        extract(null, null);
-
-        // Assert
-        assertThat(sql.toString(), equalTo("SELECT CONCAT(Tex, Walter) FROM DUAL"));
-    }
-
-    @Test
-    void shouldConcatMoreThanTwoArguments(){
-        // Arrange
-
-        // Act
-        SqlStatement sql = select(concat("Tex", "colt", "Walter")).fromDual();
-
-        // Assert
-        assertThat(sql.toString(), equalTo("SELECT Tex || colt || Walter FROM DUAL"));
-    }
-
-    @Test
-    void shouldBuildSelectStatementWithMiscellaneousFunction(){
-        // Arrange
-
-        // Act
-        SqlStatement sql = select(uid()).fromDual();
-
-        // Assert
-        assertThat(sql.toString(), equalTo("SELECT UID FROM DUAL"));
-    }
-
-    @Test
     void shouldSelectDayFromGivenDateAndMasks(){
         // Arrange
+        String userAge = "user_age";
 
         // Act
-        SqlStatement sql = select(toChar(toDate("15-aug-1947", "dd-mon-yyyy"), "Day"))
+        SqlStatement sql = select(toChar(toDate("user_age", "dd-mon-yyyy"), "Day"))
                             .fromDual();
 
         // Assert
-        assertThat(sql.toString(), equalTo("SELECT to_char(to_date('15-aug-1947', 'dd-mon-yyyy'), 'Day') FROM DUAL"));
+        assertThat(sql.toString(), equalTo("SELECT to_char(to_date(user_age, 'dd-mon-yyyy'), 'Day') FROM DUAL"));
+    }
+
+    @Test
+    void shouldSelectFromTableStatement(){
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select().from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT * FROM USER"));
+    }
+
+    @Test
+    void shouldSelectAllFromTableStatementWhenNullString(){
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select((String)null).from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT * FROM USER"));
+    }
+
+    @Test
+    void shouldSelectAllFromTableStatementWhenNullSelectExpression(){
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select((SqlStatement) null).from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT * FROM USER"));
+    }
+
+    @Test
+    void shouldSelectAllFromTableStatementWhenStartProvided(){
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select("*").from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT * FROM USER"));
+    }
+
+    @Test
+    void shouldSelectArgsFromTableStatementWhenArgsProvided(){
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select("name", "surname").from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT name, surname FROM USER"));
+    }
+
+    @Test
+    void shouldSelectArgFromTableStatementWhenField() {
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select(column("name")).from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT name FROM USER"));
+    }
+
+    @Test
+    void shouldSelectArgFromTableStatementWhenArgsProvided(){
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select(column("name").as("sur_name")).from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT name as sur_name FROM USER"));
+    }
+
+    @Test
+    void shouldSelectArgFromTableStatementWhen2Args(){
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select(
+                column("name").as("sur_name"),
+                column("date_of_birth").as("dob")
+        ).from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT name as sur_name, date_of_birth as dob FROM USER"));
+    }
+
+    @Test
+    void shouldSelectArgFromTableStatementWhen3Args(){
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select(
+                column("name").as("sur_name"),
+                column("date_of_birth").as("dob"),
+                column("place_of_birth").as("pob")
+        ).from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo(
+                "SELECT name as sur_name, date_of_birth as dob, place_of_birth as pob " +
+                        "FROM USER"));
+    }
+
+    @Test
+    void shouldSelectArgFromTableStatementWhen4Args(){
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select(
+                column("name").as("sur_name"),
+                column("date_of_birth").as("dob"),
+                column("place_of_birth").as("pob"),
+                column("password").as("pwd")
+        ).from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo(
+                "SELECT name as sur_name, date_of_birth as dob, place_of_birth as pob, password as pwd " +
+                        "FROM USER"));
+    }
+
+    @Test
+    void shouldSelectDistinctArgFromTableStatementWhenField() {
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select(distinct("name")).from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT DISTINCT name FROM USER"));
+    }
+
+    @Test
+    void shouldSelectDistinctArgAndAdditionalColumnFromTableStatement() {
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select(distinct("name").as("nm"), column("date_of_birth").as("dob"))
+                .from(tableName);
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT DISTINCT name as nm, date_of_birth as dob FROM USER"));
+    }
+
+    @Test
+    void shouldSelectFromDual() {
+        // Arrange
+        String tableName = "User";
+
+        // Act
+        SqlStatement sql = select(column("name"))
+                .fromDual();
+
+        // Assert
+        assertThat(sql.toString(), equalTo("SELECT name FROM DUAL"));
     }
 
 }

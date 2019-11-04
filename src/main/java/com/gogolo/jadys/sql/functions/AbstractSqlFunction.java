@@ -1,35 +1,30 @@
 package com.gogolo.jadys.sql.functions;
 
-import com.gogolo.jadys.sql.statement.select.SelectArgument;
+import com.gogolo.jadys.sql.SqlStatement;
 import org.apache.commons.lang3.ArrayUtils;
 
-public abstract class AbstractSqlFunction<T extends SqlFunction> extends SelectArgument {
+public abstract class AbstractSqlFunction<T extends SqlFunction> extends SqlStatement {
 
-    private String expression;
+    protected static final String COMMA_SPACE = ", ";
 
-    protected SelectArgument apply(T sqlFunction){
-        this.expression = sqlFunction.getCode();
+    protected SqlStatement apply(T sqlFunction){
+        setSql(sqlFunction.getCode());
         return this;
     }
 
-    protected SelectArgument apply(T sqlFunction, Object arg){
-        this.expression = sqlFunction.format(String.valueOf(arg));
+    protected SqlStatement apply(T sqlFunction, Object arg){
+        setSql(sqlFunction.format(String.valueOf(arg)));
         return this;
     }
 
-    protected SelectArgument apply(T sqlFunction, Object arg1, Object arg2){
-        this.expression = sqlFunction.format(String.valueOf(arg1), String.valueOf(arg2));
+    protected SqlStatement apply(T sqlFunction, Object arg1, Object arg2){
+        setSql(sqlFunction.format(String.valueOf(arg1), String.valueOf(arg2)));
         return this;
     }
 
-    protected SelectArgument apply(T sqlFunction, Object... args){
-        this.expression = sqlFunction.format(ArrayUtils.toStringArray(args));
+    protected SqlStatement apply(T sqlFunction, Object... args){
+        setSql(sqlFunction.format(ArrayUtils.toStringArray(args)));
         return this;
-    }
-
-    @Override
-    public String getValue() {
-        return expression;
     }
 
 }

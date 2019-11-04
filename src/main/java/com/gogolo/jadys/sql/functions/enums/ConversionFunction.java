@@ -4,8 +4,8 @@ import com.gogolo.jadys.sql.functions.SqlFunction;
 
 public enum ConversionFunction implements SqlFunction {
 
-    TO_CHAR("TO_CHAR", "to_char(%s, %s)"),
-    TO_DATE("TO_DATE", "to_date(%s, %s)"); // Select to_char(sysdate,’DAY’)”Today” FROM DUAL;
+    TO_CHAR("TO_CHAR", "to_char(%s)"),
+    TO_DATE("TO_DATE", "to_date(%s)");
 
     private String code;
     private  String format;

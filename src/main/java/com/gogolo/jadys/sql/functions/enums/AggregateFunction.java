@@ -28,8 +28,4 @@ public enum AggregateFunction implements SqlFunction {
         return format;
     }
 
-    public AggregateFunction distinct(){
-        this.format = format("DISTINCT %s");
-        return this;
-    }
 }

@@ -1,7 +1,5 @@
 package com.gogolo.jadys.enums;
 
-import com.gogolo.jadys.enums.Rdms;
-
 public enum DatabaseVersion {
 
     ORACLE_8_I("ORACLE_8_I", "Oracle 8i", Rdms.ORACLE),
